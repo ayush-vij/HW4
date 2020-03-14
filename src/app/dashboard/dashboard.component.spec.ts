@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { Hero } from '../hero';
-import { HeroService } from '../hero.service';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-@Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: [ './dashboard.component.css' ]
-})
-export class DashboardComponent implements OnInit {
-  heroes: Hero[] = [];
+import { DashboardComponent } from './dashboard.component';
 
-  constructor(private heroService: HeroService) { }
+describe('DashboardComponent', () => {
+  let component: DashboardComponent;
+  let fixture: ComponentFixture<DashboardComponent>;
 
-  ngOnInit() {
-    this.getHeroes();
-  }
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ DashboardComponent ]
+    })
+    .compileComponents();
+  }));
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
-  }
-}
+  beforeEach(() => {
+    fixture = TestBed.createComponent(DashboardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should be created', () => {
+    expect(component).toBeTruthy();
+  });
+});
